@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<XmlTemplate>
+		<name>tpl1</name>
+		<template><![CDATA[tpl content 1]]></template>
+	</XmlTemplate>
+
+	<XmlTemplate>
+		<name>tpl2</name>
+		<template><![CDATA[tpl content 2]]></template>
+	</XmlTemplate>
+</list>
