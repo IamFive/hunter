@@ -11,4 +11,21 @@
 		<module>hunter-parent</module>
 		<module>hunter-core</module>
 	</modules>
+	
+	<scm>
+	    <connection>scm:git:git@github.com:IamFive/hunter.git</connection>
+	    <developerConnection>scm:git:git@github.com:IamFive/hunter.git</developerConnection>
+	    <url>git@github.com:IamFive/hunter.git</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 </project>
