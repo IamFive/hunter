@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+	default-lazy-init="true">
+
+	<description>Spring公共配置 </description>
+	
+	<aop:aspectj-autoproxy />
+	<bean class="edu.hunter.modules.utils.SpringContextHolder" lazy-init="false" />
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="edu.hunter.web, edu.hunter.modules">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+
+	<!-- JSR303 Validator定义 -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+	
+	
+	<!-- Tomcat JDBC -->
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="maxActive" value="${jdbc.pool.maxActive}" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="${jdbc.pool.minIdle}" />
+
+		<property name="defaultAutoCommit" value="false" />
+		<!-- 连接Idle半个小时后超时，每15分钟检查一次 -->
+		<property name="timeBetweenEvictionRunsMillis" value="900000" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+	</bean>
+	
+	<!-- production 环境 -->
+	<beans profile="production">
+		<context:property-placeholder ignore-resource-not-found="true" properties-ref="properties" />
+		<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="ignoreResourceNotFound" value="true" />
+			<property name="locations">
+				<list>
+					<value>classpath*:/properties/application.properties</value>
+					<value>classpath*:/properties/application.prod.properties</value>
+				</list>
+			</property>
+		</bean>
+		<!-- 初始化数据结构 -->
+		<!-- <jdbc:initialize-database data-source="ds1" ignore-failures="ALL"> <jdbc:script location="classpath:sqls/structure.sql" 
+			/> <jdbc:script location="classpath:sqls/data.sql" /> </jdbc:initialize-database> -->
+
+		<!-- 数据源配置,使用应用服务器的数据库连接池 -->
+		<!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/ExampleDB" /> -->
+	</beans>
+
+	<!-- local development环境 -->
+	<beans profile="dev">
+		<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="ignoreResourceNotFound" value="true" />
+			<property name="locations">
+				<list>
+					<value>classpath*:/properties/application.properties</value>
+					<value>classpath*:/properties/application.dev.properties</value>
+				</list>
+			</property>
+		</bean>
+		<context:property-placeholder ignore-resource-not-found="true" properties-ref="properties" />
+	</beans>
+
+	<!-- test development环境 -->
+	<beans profile="test">
+		<context:property-placeholder ignore-resource-not-found="true" properties-ref="properties" />
+		<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="ignoreResourceNotFound" value="true" />
+			<property name="locations">
+				<list>
+					<value>classpath*:/properties/application.properties</value>
+					<value>classpath*:/properties/application.test.properties</value>
+				</list>
+			</property>
+		</bean>
+	</beans>
+
+</beans>

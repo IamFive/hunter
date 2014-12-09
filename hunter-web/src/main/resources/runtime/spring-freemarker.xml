@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	default-lazy-init="true">
+
+	<description>FreeMarker Configuration</description>
+
+	<bean id="xmlTemplate" class="edu.hunter.modules.freemarker.XmlTemplateFactory">
+		<property name="locations">
+			<list>
+				<value>classpath:/templates/</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="freemarkerConfigurer" class="edu.hunter.modules.freemarker.FreeMarkerConfigurationFactory" lazy-init="false">
+
+		<property name="preTemplateLoaders">
+			<list>
+				<ref bean="xmlTemplate" />
+			</list>
+		</property>
+
+		<property name="templateLoaderPaths">
+			<list>
+				<value>classpath:/tags/</value>
+			</list>
+		</property>
+		
+		<!-- 
+		<property name="staticModelLocations">
+			<value>classpath:freemarker/static.properties</value>
+		</property>
+		 -->
+
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 
+	<bean id="freemarkerHelper" class="edu.hunter.modules.freemarker.FreeMarkerHelper">
+		<property name="configuration" ref="freemarkerConfigurer" />
+	</bean>
+	 -->
+</beans>

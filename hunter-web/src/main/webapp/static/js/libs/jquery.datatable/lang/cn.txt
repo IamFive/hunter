@@ -1,0 +1,18 @@
+{
+	"sProcessing": "载入中...",
+	"sLengthMenu": "显示_MENU_条 ",
+	"sZeroRecords": "没有内容可以显示!",
+	"sInfo": "从_START_ 到 _END_ 条记录——总记录数为 _TOTAL_ 条",
+	"sInfoEmpty": "记录数为0",
+	"sInfoFiltered": "(全部记录数 _MAX_  条)",
+	"sInfoPostFix": "",
+	"sSearch": "搜索",
+	"sUrl": "",
+	"oPaginate": {
+		"sFirst": "首页",
+		"sPrevious": "上一页 ",
+		"sNext": "下一页 ",
+		"sLast": "末页 "
+	}
+}
+

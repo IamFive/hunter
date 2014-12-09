@@ -1,0 +1,2 @@
+- use original tag component to replace freemarker template.
+- keep the select/input tag simple and clean.

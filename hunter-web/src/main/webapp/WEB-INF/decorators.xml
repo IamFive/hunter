@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/layouts/">
+	
+	<excludes>
+		<pattern>/static/**</pattern>
+		<pattern>/common/**</pattern>
+		<pattern>*.json*</pattern>
+		<pattern>*.html*</pattern>
+		<pattern>/api/**</pattern>
+	</excludes>
+	
+	<!-- body is empty -->
+	<decorator name="basic" page="basic.jsp">
+		<pattern>/login</pattern>
+		<pattern>/authorize</pattern>
+	</decorator>
+	
+	<!-- default example
+	<decorator name="user" page="user.jsp">
+		<pattern>/user</pattern>
+		<pattern>/user/**</pattern>
+	</decorator>
+	-->
+	
+</decorators>

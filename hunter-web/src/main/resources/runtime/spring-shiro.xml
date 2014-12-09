@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.ektorp.org/schema/couchdb
+            http://www.ektorp.org/schema/couchdb/couchdb.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<description>Shiro安全配置</description>
+
+	<!-- Shiro's main business-tier object for web-enabled applications -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="realm" />
+<!-- 		<property name="cacheManager" ref="shiroEhcacheManager" />  -->
+	</bean>
+
+	<!-- TODO 替换成項目自定义的 Realm -->
+	<bean id="realm" class="edu.hunter.modules.security.shiro.ShiroRealm"></bean>
+
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+<!-- 		<property name="loginUrl" value="/login" /> -->
+<!-- 		<property name="successUrl" value="/" /> -->
+		<property name="filters">
+			<util:map>
+				<entry key="hosts">
+					<bean class="edu.hunter.modules.web.shiro.HostFilter" />
+				</entry>
+			</util:map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+                /login = anon
+                /logout = logout
+                /api = hosts[127.0.0.1,10.*.*.*]
+			</value>
+		</property>
+	</bean>
+
+	<!-- 用户授权信息Cache, 采用EhCache
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"> <property 
+		name="cacheManagerConfigFile" value="classpath:cache/ehcache-shiro.xml"/> </bean> 
+		 -->
+		 
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+</beans>

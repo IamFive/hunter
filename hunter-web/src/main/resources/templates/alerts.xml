@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<XmlTemplate>
+		<name>fee.start.to.pay</name>
+		<template><![CDATA[尊敬的智汇通认证商，您的年费缴纳时间已到，请在30天内及时缴纳年费，否则将冻结您的收益，冻结期间的收益都将不予结算。]]></template>
+	</XmlTemplate>
+	
+</list>

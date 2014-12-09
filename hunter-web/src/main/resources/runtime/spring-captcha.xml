@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	default-lazy-init="true">
+
+	<bean id="captcha" class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService" lazy-init="false">
+		<property name="captchaEngine">
+			<bean class="edu.hunter.modules.web.captcha.CaptchaEngineer" />
+		</property>
+		<!-- 
+		默认生成的图片180秒过期 , 可另行设置
+		<property name="minGuarantedStorageDelayInSeconds" value="180" />
+		-->
+	</bean>
+
+</beans>
