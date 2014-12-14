@@ -41,9 +41,6 @@ var require = {
 		'ueditor.config' : 'libs/ueditor/ueditor.config',
 		'ueditor.all' : 'libs/ueditor/ueditor.all',
 			
-		// ckeditor
-		'ckeditor' : 'libs/ckeditor/ckeditor',
-		
 		//jquery modal
 		'modal' : 'libs/jquery-modal/jquery.modal',
 		
@@ -66,7 +63,7 @@ var require = {
 		, 'vi' : ['v']
 		,'validation' : ['va', 'vi']
 		,'zhSelect2' : ['select2', 'css!libs/select2-3.4.5/select2.css']
-		,'ueditor.config':['ueditor.all']
+		,'ueditor.config' : ['ueditor.all']
 		,'modal' : ['css!libs/jquery-modal/jquery.modal.css']
 		,'bxslider' : ['css!libs/jquery.bxslider/jquery.bxslider.css']
 		,'dataTables' : ['css!libs/jquery.datatable/css/jquery.dataTables.min.css']
