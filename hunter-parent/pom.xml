@@ -14,7 +14,7 @@
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
 		<hunter.version>1.0.0</hunter.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>4.1.3.RELEASE</spring.version>
 		<hibernate.version>4.2.6.Final</hibernate.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<spring-data-jpa.version>1.4.1.RELEASE</spring-data-jpa.version>
@@ -704,13 +704,17 @@
 				</exclusions>
 			</dependency>
 
-			<!-- springside -->
 			<dependency>
 				<groupId>edu.hunter</groupId>
 				<artifactId>hunter-core</artifactId>
 				<version>${hunter.version}</version>
-				<classifier>tests</classifier>
-				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>edu.hunter</groupId>
+				<artifactId>hunter-test</artifactId>
+				<version>${hunter.version}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<!-- spring -->

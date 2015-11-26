@@ -7,7 +7,7 @@
  */
 package edu.hunter.modules.datasource;
 
-import org.springframework.orm.jpa.JpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 /**
@@ -18,10 +18,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Deprecated
 public class MultiplyDatasourceJpaVendorAdapter extends HibernateJpaVendorAdapter {
 
-	private final JpaDialect dialect = new MultiplyDatasourceJpaDialect();
+	private final HibernateJpaDialect dialect = new MultiplyDatasourceJpaDialect();
 
 	@Override
-	public JpaDialect getJpaDialect() {
+	public HibernateJpaDialect getJpaDialect() {
 		return this.dialect;
 	}
 }
