@@ -714,7 +714,6 @@
 				<groupId>edu.hunter</groupId>
 				<artifactId>hunter-test</artifactId>
 				<version>${hunter.version}</version>
-				<scope>test</scope>
 			</dependency>
 
 			<!-- spring -->

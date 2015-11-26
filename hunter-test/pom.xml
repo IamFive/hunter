@@ -31,11 +31,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-webapp</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>edu.hunter</groupId>
@@ -61,6 +63,22 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
-
-
+	
+	<build>
+		<plugins>
+			<!-- source attach plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
