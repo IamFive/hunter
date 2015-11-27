@@ -120,4 +120,9 @@ public class PinYinUtils {
 
 		return result;
 	}
+
+	public static void main(String[] args) {
+		ArrayList<String> convert = PinYinUtils.combine("重庆");
+		System.out.println(convert);
+	}
 }

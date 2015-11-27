@@ -10,6 +10,7 @@
 	<modules>
 		<module>hunter-parent</module>
 		<module>hunter-core</module>
+		<module>hunter-test</module>
 	</modules>
 	
 	<scm>

@@ -14,23 +14,26 @@
 
 package edu.hunter.modules.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 public class SpringContextHolder implements ApplicationContextAware {
-	
+
 	private static ApplicationContext applicationContext;
-	
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextHolder.applicationContext = applicationContext;
 	}
-	
+
 	public static ApplicationContext getApplicationContext() {
 		checkApplicationContext();
 		return applicationContext;
 	}
-	
+
 	/**
 	 * 通过Bean的唯一名称获取Bean实例
 	 * 
@@ -44,17 +47,22 @@ public class SpringContextHolder implements ApplicationContextAware {
 		T bean = (T) applicationContext.getBean(name);
 		return bean;
 	}
-	
+
 	public static <T> T getBean(Class<T> clazz) {
 		checkApplicationContext();
 		T bean = applicationContext.getBean(clazz);
 		return bean;
 	}
-	
+
+	public static <T> List<T> getBeans(Class<T> beanClass) {
+		checkApplicationContext();
+		return new ArrayList<T>(applicationContext.getBeansOfType(beanClass).values());
+	}
+
 	private static void checkApplicationContext() {
 		if (applicationContext == null) {
 			throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContextUtil");
 		}
 	}
-	
+
 }
