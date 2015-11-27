@@ -704,13 +704,16 @@
 				</exclusions>
 			</dependency>
 
-			<!-- springside -->
 			<dependency>
 				<groupId>edu.hunter</groupId>
 				<artifactId>hunter-core</artifactId>
 				<version>${hunter.version}</version>
-				<classifier>tests</classifier>
-				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>edu.hunter</groupId>
+				<artifactId>hunter-test</artifactId>
+				<version>${hunter.version}</version>
 			</dependency>
 
 			<!-- spring -->
