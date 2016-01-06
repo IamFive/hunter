@@ -35,6 +35,12 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1205-jdbc41</version>
+			<scope>compile</scope>
+		</dependency>
 		<!-- PERSISTENCE end -->
 
 		<!-- Security begin -->

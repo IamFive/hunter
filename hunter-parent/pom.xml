@@ -19,7 +19,7 @@
 		<mybatis.version>3.2.8</mybatis.version>
 		<spring-data-jpa.version>1.4.1.RELEASE</spring-data-jpa.version>
 		<tomcat-jdbc.version>7.0.42</tomcat-jdbc.version>
-		<sitemesh.version>2.4.2</sitemesh.version>
+		<sitemesh.version>3.0.1</sitemesh.version>
 		<shiro.version>1.2.2</shiro.version>
 		<cxf.version>2.7.7</cxf.version>
 		<activemq.version>5.7.0</activemq.version>
@@ -199,7 +199,7 @@
 
 			<!-- sitemesh -->
 			<dependency>
-				<groupId>opensymphony</groupId>
+				<groupId>org.sitemesh</groupId>
 				<artifactId>sitemesh</artifactId>
 				<version>${sitemesh.version}</version>
 				<scope>runtime</scope>
