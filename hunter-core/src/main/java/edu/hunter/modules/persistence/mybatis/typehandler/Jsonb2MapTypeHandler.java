@@ -29,6 +29,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.apache.ibatis.type.Alias;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
@@ -40,6 +41,7 @@ import edu.hunter.modules.mapper.JsonMapper;
 /**
  * @author Manni Wood
  */
+@Alias("Jsonb2Map")
 @MappedJdbcTypes(JdbcType.OTHER)
 @MappedTypes(Map.class)
 public class Jsonb2MapTypeHandler extends BaseTypeHandler<Map<String, Object>> {
